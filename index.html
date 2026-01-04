@@ -52,16 +52,29 @@
             transition: all 0.3s ease;
             appearance: none;
         }
+        .chips-container { width: 100%; display: flex; gap: 8px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+        .chip { 
+            padding: 8px 16px; background: #e8f0fe; color: var(--g-blue); 
+            border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .chip:active { transform: scale(0.9); }
 
         .toggle-container { width: 100%; display: flex; background: #f1f3f4; border-radius: 12px; margin-bottom: 10px; padding: 4px; box-sizing: border-box; } 
         .toggle-btn { flex: 1; text-align: center; font-size: 11px; padding: 8px; border-radius: 8px; cursor: pointer; font-weight: 700; color: #5f6368; transition: all 0.5s ease; } 
         .active-mode { background: white; color: var(--g-blue); box-shadow: 0 2px 6px rgba(0,0,0,0.1); } 
 
-        #mapArea { 
-            flex: 1; position: relative; background: #fdfdfd; overflow: hidden; 
-            display: flex; justify-content: center; align-items: center; padding-bottom: 100px; 
-            perspective: 1500px;
-        } 
+       #mapArea { 
+    flex: 1; 
+    position: relative; 
+    background: #fdfdfd; 
+    overflow: hidden; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding-bottom: 0px; /* Changed from 100px to 0px */
+    perspective: 1500px;
+}
 
         #mapRotationContainer { 
             width: 1000px; height: 400px; position: absolute; 
@@ -88,19 +101,17 @@
             display: none; 
         } 
 
-        /* FIXED NAV CARD FOR MOBILE VISIBILITY */
-        #navCard { 
-            position: absolute; 
-            bottom: 0; 
-            width: 100%; 
-            background: white; 
-            display: none; 
-            z-index: 600; 
-            border-radius: 28px 28px 0 0; 
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
-            padding-bottom: env(safe-area-inset-bottom, 20px); /* Handles iPhone notch/home bar */
-            animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        } 
+         #navCard { 
+    position: relative; /* Changed from absolute to relative */
+    width: 100%; 
+    background: white; 
+    display: none; 
+    z-index: 600; 
+    border-radius: 28px 28px 0 0; 
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+    flex-shrink: 0; /* Ensures the card doesn't shrink */
+}
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
         .btn { flex: 1; padding: 16px; border-radius: 16px; border: none; font-weight: 700; cursor: pointer; transition: transform 0.3s ease; } 
@@ -158,14 +169,14 @@
     </div> 
 
     <div id="navCard"> 
-        <div style="padding: 24px; font-weight: 600; font-size: 18px; text-align: center; color: var(--text);" id="stepText">Ready</div> 
-        
-        <div style="padding: 0 20px 20px; display: flex; gap: 12px;">
-            <button class="btn" style="background:#f1f3f4; color:#5f6368" onclick="prevStep()">BACK</button>
-            <button class="btn" style="background:var(--g-blue); color:white" onclick="nextStep()">NEXT</button>
-            <button class="btn" style="background:#ea4335; color:white; flex: 0.4" onclick="resetNav()">EXIT</button>
-        </div> 
-    </div>
+    <div style="padding: 24px; font-weight: 600; font-size: 18px; text-align: center; color: var(--text);" id="stepText">Ready</div> 
+    
+    <div style="padding: 0 20px 20px; display: flex; gap: 12px;">
+        <button class="btn" style="background:#f1f3f4; color:#5f6368" onclick="prevStep()">BACK</button>
+        <button class="btn" style="background:var(--g-blue); color:white" onclick="nextStep()">NEXT</button>
+        <button class="btn" style="background:#ea4335; color:white; flex: 0.4" onclick="resetNav()">EXIT</button>
+    </div> 
+</div>
 </div> 
 
 <script> 
@@ -177,7 +188,7 @@ const roomData = [
     {id:"113", n:"CIE 4", f:0, x:315, y:185, s:'t'}, {id:"114", n:"CIE 2A", f:0, x:365, y:185, s:'t'}, {id:"115", n:"HOS Office", f:0, x:415, y:185, s:'t'}, {id:"116", n:"Conference Room", f:0, x:465, y:185, s:'t'}, {id:"117", n:"Exam Cell", f:0, x:515, y:185, s:'t'}, {id:"118", n:"French Room", f:0, x:565, y:185, s:'t'}, {id:"119", n:"EY 2", f:0, x:615, y:185, s:'t'}, {id:"120", n:"EY 3B", f:0, x:665, y:185, s:'t'}, {id:"121", n:"Staff Room G", f:0, x:815, y:185, s:'t'}, {id:"GW0", n:"Girls Washroom", f:0, x:865, y:185, s:'t'},
     {id:"BW0", n:"Boys Washroom", f:0, x:75, y:215, s:'b'}, {id:"109", n:"Music Room", f:0, x:125, y:215, s:'b'}, {id:"108", n:"CIE 3A", f:0, x:315, y:215, s:'b'}, {id:"107", n:"CIE 1A", f:0, x:365, y:215, s:'b'}, {id:"106", n:"IG Coordinator", f:0, x:415, y:215, s:'b'}, {id:"100", n:"Reception", f:0, x:465, y:215, s:'b'}, {id:"105", n:"Admin Office", f:0, x:515, y:215, s:'b'}, {id:"104", n:"CIE 1B", f:0, x:565, y:215, s:'b'}, {id:"103", n:"EY 1", f:0, x:615, y:215, s:'b'}, {id:"102", n:"EY 3A", f:0, x:665, y:215, s:'b'}, {id:"101", n:"Chemistry Lab", f:0, x:840, y:215, s:'b', w:100},
     
-    /* FIRST FLOOR */
+    /* FIRST FLOOR - Washrooms Restored */
     {id:"BW1", n:"Boys Washroom", f:1, x:75, y:215, s:'b'}, {id:"208", n:"CS Lab", f:1, x:160, y:215, s:'b', w:100}, {id:"207", n:"DP 1", f:1, x:340, y:215, s:'b'}, {id:"206", n:"IG 1", f:1, x:440, y:215, s:'b'}, {id:"205", n:"Library", f:1, x:560, y:215, s:'b', w:185}, {id:"204", n:"CIE 7", f:1, x:680, y:215, s:'b'}, {id:"203", n:"CIE 5", f:1, x:740, y:215, s:'b'}, {id:"202", n:"Biology Lab", f:1, x:860, y:215, s:'b'}, {id:"201", n:"ESS Lab", f:1, x:920, y:215, s:'b'},
     {id:"209", n:"Art Lab", f:1, x:140, y:185, s:'t', w:150}, {id:"210", n:"DP 2", f:1, x:340, y:185, s:'t'}, {id:"211", n:"IG 2", f:1, x:440, y:185, s:'t'}, {id:"212", n:"Physics Lab", f:1, x:540, y:185, s:'t', w:100}, {id:"213", n:"CIE 8", f:1, x:640, y:185, s:'t'}, {id:"214", n:"CIE 6", f:1, x:710, y:185, s:'t'}, {id:"215", n:"Staff Room F1", f:1, x:840, y:185, s:'t'}, {id:"GW1", n:"Girls Washroom", f:1, x:895, y:185, s:'t'},
     
@@ -322,6 +333,8 @@ function update() {
     }
 } 
 
+function quickNav(id) { document.getElementById("destSelect").value = id; startNav(); }
+
 function startNav() { 
     const s = roomData.find(r => r.id === document.getElementById("startSelect").value); 
     const d = roomData.find(r => r.id === document.getElementById("destSelect").value); 
@@ -330,15 +343,21 @@ function startNav() {
     isNavigating = true;
     const sCY = s.s === 't' ? s.y - 30 : s.y + 30, dCY = d.s === 't' ? d.y - 30 : d.y + 30;
     
+    // 1. Exit the room
     route = [{ x: s.x, y: sCY, f: s.f, t: `Exit ${s.n}` }]; 
     route.push({ x: s.x, y: 200, f: s.f, t: "Step into the hallway" });
 
     if (s.f !== d.f) { 
+        // 2. Multi-floor logic
         const leftStairX = 260;
         const rightStairX = 760;
+        
+        // Pick nearest stairs
         const isLeftNear = Math.abs(s.x - leftStairX) < Math.abs(s.x - rightStairX);
         const stairX = isLeftNear ? leftStairX : rightStairX;
         const stairName = isLeftNear ? "Left" : "Right";
+        
+        // Calculate direction to stairs
         const toStairDir = stairX > s.x ? "Turn Right" : "Turn Left";
         
         route.push(
@@ -348,17 +367,21 @@ function startNav() {
             { x: stairX, y: 200, f: d.f, t: "Walk back into the hallway" }
         ); 
 
+        // 3. Direction from stairs to destination room
         const finalDir = d.x > stairX ? "Turn Right" : "Turn Left";
         route.push({ x: d.x, y: 200, f: d.f, t: `${finalDir} and walk straight` });
     } else {
+        // 4. Same floor logic
         const directDir = d.x > s.x ? "Turn Right" : "Turn Left";
         route.push({ x: d.x, y: 200, f: d.f, t: `${directDir} and walk straight` });
     }
 
+    // 5. Final Arrival
     route.push({ x: d.x, y: dCY, f: d.f, t: `Arrived! ${d.n} is on your ${d.s === 't' ? 'Left' : 'Right'}` }); 
 
     stepIdx = 0; 
-    document.getElementById("navCard").style.display = "block"; 
+   document.getElementById("navCard").style.display = "block"; 
+    
     update();
 }
 
@@ -380,7 +403,8 @@ roomData.sort((a,b)=>a.n.localeCompare(b.n)).forEach(r => {
     dEl.add(optDest); 
 }); 
 
-sEl.value = "100"; 
+sEl.value = "100"; // Default: Reception
+
 drawFloor(0); 
 update(); 
 </script> 
