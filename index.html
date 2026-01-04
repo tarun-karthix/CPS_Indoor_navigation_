@@ -18,7 +18,7 @@
             justify-content: center; align-items: center; overflow: hidden; 
         } 
         #phone-wrapper { 
-            width: 100vw; max-width: 412px; height: 100dvh; background: var(--bg); 
+            width: 100vw; max-width: 412px; height: 100vh; background: var(--bg); 
             display: flex; flex-direction: column; position: relative; overflow: hidden; 
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
         } 
@@ -343,21 +343,27 @@ function startNav() {
     isNavigating = true;
     const sCY = s.s === 't' ? s.y - 30 : s.y + 30, dCY = d.s === 't' ? d.y - 30 : d.y + 30;
     
-    // 1. Exit the room
     route = [{ x: s.x, y: sCY, f: s.f, t: `Exit ${s.n}` }]; 
     route.push({ x: s.x, y: 200, f: s.f, t: "Step into the hallway" });
 
     if (s.f !== d.f) { 
-        // 2. Multi-floor logic
         const leftStairX = 260;
         const rightStairX = 760;
         
-        // Pick nearest stairs
-        const isLeftNear = Math.abs(s.x - leftStairX) < Math.abs(s.x - rightStairX);
-        const stairX = isLeftNear ? leftStairX : rightStairX;
-        const stairName = isLeftNear ? "Left" : "Right";
+        let stairX;
+        let stairName;
+
+        // NEW LOGIC: If going to Floor 2, MUST use Left Stairs (260)
+        if (d.f === 2 || s.f === 2) {
+            stairX = leftStairX;
+            stairName = "Left";
+        } else {
+            // Otherwise, use the closest one
+            const isLeftNear = Math.abs(s.x - leftStairX) < Math.abs(s.x - rightStairX);
+            stairX = isLeftNear ? leftStairX : rightStairX;
+            stairName = isLeftNear ? "Left" : "Right";
+        }
         
-        // Calculate direction to stairs
         const toStairDir = stairX > s.x ? "Turn Right" : "Turn Left";
         
         route.push(
@@ -367,21 +373,17 @@ function startNav() {
             { x: stairX, y: 200, f: d.f, t: "Walk back into the hallway" }
         ); 
 
-        // 3. Direction from stairs to destination room
         const finalDir = d.x > stairX ? "Turn Right" : "Turn Left";
         route.push({ x: d.x, y: 200, f: d.f, t: `${finalDir} and walk straight` });
     } else {
-        // 4. Same floor logic
         const directDir = d.x > s.x ? "Turn Right" : "Turn Left";
         route.push({ x: d.x, y: 200, f: d.f, t: `${directDir} and walk straight` });
     }
 
-    // 5. Final Arrival
     route.push({ x: d.x, y: dCY, f: d.f, t: `Arrived! ${d.n} is on your ${d.s === 't' ? 'Left' : 'Right'}` }); 
 
     stepIdx = 0; 
-   document.getElementById("navCard").style.display = "block"; 
-    
+    document.getElementById("navCard").style.display = "block"; 
     update();
 }
 
@@ -410,4 +412,3 @@ update();
 </script> 
 </body> 
 </html>
-
