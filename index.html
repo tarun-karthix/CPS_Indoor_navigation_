@@ -125,14 +125,14 @@
         #pathCore { stroke: var(--g-blue); stroke-width: 4; fill: none; stroke-linecap: round; filter: drop-shadow(0 0 4px rgba(26, 115, 232, 0.4)); }
 
         .confetti { 
-    position: absolute; 
-    width: 8px; 
-    height: 8px; 
-    z-index: 9999; /* Higher than everything else */
-    pointer-events: none; 
-    border-radius: 2px; 
-    top: -10px; /* Start slightly above the top */
-}
+            position: absolute; width: 8px; height: 8px; z-index: 9999; 
+            pointer-events: none; border-radius: 2px; top: -10px;
+        }
+
+        @keyframes confettiFall { 
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; } 
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } 
+        } 
     </style> 
 </head> 
 <body> 
@@ -212,31 +212,16 @@ function popConfetti() {
     for (let i = 0; i < 100; i++) {
         const c = document.createElement('div');
         c.className = 'confetti';
-        
-        // Random horizontal position
         c.style.left = Math.random() * 100 + '%';
-        
-        // Random Google colors
-        const colors = ['#1a73e8', '#f4b400', '#0f9d58', '#db4437'];
-        c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        
-        // Random size
+        c.style.backgroundColor = ['#1a73e8', '#f4b400', '#0f9d58', '#db4437'][Math.floor(Math.random() * 4)];
         const size = (Math.random() * 8 + 4) + 'px';
-        c.style.width = size; 
-        c.style.height = size;
-        
-        // Random animation timing
+        c.style.width = size; c.style.height = size;
         const duration = 2 + Math.random() * 2;
-        const delay = Math.random() * 0.5;
-        c.style.animation = `confettiFall ${duration}s linear ${delay}s forwards`;
-        
+        c.style.animation = `confettiFall ${duration}s linear ${Math.random() * 0.5}s forwards`;
         wrapper.appendChild(c);
-        
-        // Clean up memory
-        setTimeout(() => c.remove(), (duration + delay) * 1000);
+        setTimeout(() => c.remove(), 4000);
     }
 }
-
 function drawFloor(f) { 
     if(isNavigating && f !== currentFloor) showOverlay(f > currentFloor ? "GOING UP" : "GOING DOWN", f > currentFloor ? "↑" : "↓");
     currentFloor = f; 
@@ -306,8 +291,7 @@ function update() {
     document.getElementById("stepText").textContent = cur.t; 
     speak(cur.t); 
 
-// Change this line in your update() function:
-if (cur.t.includes("Arrived!")) popConfetti();
+    if (cur.t.includes("Arrived!")) popConfetti();
 
     marker.style.display = "block";
     marker.setAttribute("cx", cur.x); marker.setAttribute("cy", cur.y);
@@ -440,4 +424,3 @@ update();
 </script> 
 </body> 
 </html>
-
