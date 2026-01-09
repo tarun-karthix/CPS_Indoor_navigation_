@@ -378,11 +378,11 @@ function startNav() {
         const finalDir = d.x > stairX ? "Turn Right" : "Turn Left";
         route.push({ x: d.x, y: 200, f: d.f, t: `${finalDir} and walk straight` });
     } else {
-        const directDir = d.x > s.x ? "Turn Right" : "Turn Left";
+        const directDir = d.x > s.x ? "Turn Left" : "Turn Right";
         route.push({ x: d.x, y: 200, f: d.f, t: `${directDir} and walk straight` });
     }
 
-    route.push({ x: d.x, y: dCY, f: d.f, t: `Arrived! ${d.n} is on your ${d.s === 't' ? 'Left' : 'Right'}` }); 
+    route.push({ x: d.x, y: dCY, f: d.f, t: `Arrived! ${d.n} is on your ${d.s === 't' ? 'Right' : 'left'}` }); 
 
     stepIdx = 0; 
     document.getElementById("navCard").style.display = "block"; 
