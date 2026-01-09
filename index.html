@@ -189,16 +189,16 @@ let currentMode = 'static', currentAngle = 0, currentFloor = 0, route = [], step
 const roomData = [ 
     /* GROUND FLOOR */
     {id:"110", n:"CIE 3B", f:0, x:75, y:185, s:'t'}, {id:"111", n:"Tamil Room", f:0, x:125, y:185, s:'t'}, {id:"112", n:"CIE 2B", f:0, x:175, y:185, s:'t'},
-    {id:"113", n:"Threads of life", f:0, x:315, y:185, s:'t'}, {id:"114", n:"The ocean oddessey", f:0, x:365, y:185, s:'t'}, {id:"115", n:"HOS Office", f:0, x:415, y:185, s:'t'}, {id:"116", n:"Conference Room", f:0, x:465, y:185, s:'t'}, {id:"117", n:"Exam Cell", f:0, x:515, y:185, s:'t'}, {id:"118", n:"French Room", f:0, x:565, y:185, s:'t'}, {id:"119", n:"EY 2", f:0, x:615, y:185, s:'t'}, {id:"120", n:"EY 3B", f:0, x:665, y:185, s:'t'}, {id:"121", n:"Staff Room G", f:0, x:815, y:185, s:'t'}, {id:"GW0", n:"Girls Washroom", f:0, x:865, y:185, s:'t'},
-    {id:"BW0", n:"Boys Washroom", f:0, x:75, y:215, s:'b'}, {id:"109", n:"Swing and Sway - early years", f:0, x:125, y:215, s:'b'}, {id:"108", n:"RO(ute)ot to wood", f:0, x:315, y:215, s:'b'}, {id:"107", n:"The rainforest realm ", f:0, x:365, y:215, s:'b'}, {id:"106", n:"IG Coordinator", f:0, x:415, y:215, s:'b'}, {id:"100", n:"Reception", f:0, x:465, y:215, s:'b'}, {id:"105", n:"Admin Office", f:0, x:515, y:215, s:'b'}, {id:"104", n:"CIE 1B", f:0, x:565, y:215, s:'b'}, {id:"103", n:"EY 1", f:0, x:615, y:215, s:'b'}, {id:"102", n:"EY 3A", f:0, x:665, y:215, s:'b'}, {id:"101", n:"Chemistry Lab", f:0, x:840, y:215, s:'b', w:100},
+    {id:"113", n:"Threads of life", f:0, x:315, y:185, s:'t'}, {id:"114", n:"The ocean oddessey", f:0, x:365, y:185, s:'t'}, {id:"115", n:"HOS Office", f:0, x:415, y:185, s:'t'}, {id:"116", n:"Conference Room", f:0, x:465, y:185, s:'t'}, {id:"117", n:"Exam Cell", f:0, x:515, y:185, s:'t'}, {id:"118", n:"French Room", f:0, x:565, y:185, s:'t'}, {id:"119", n:"EY 2", f:0, x:615, y:185, s:'t'}, {id:"120", n:"Writer's club", f:0, x:665, y:185, s:'t'}, {id:"121", n:"Staff Room G", f:0, x:815, y:185, s:'t'}, {id:"GW0", n:"Girls Washroom", f:0, x:865, y:185, s:'t'},
+    {id:"BW0", n:"Boys Washroom", f:0, x:75, y:215, s:'b'}, {id:"109", n:"Swing and Sway - early years", f:0, x:125, y:215, s:'b'}, {id:"108", n:"RO(ute)ot to wood", f:0, x:315, y:215, s:'b'}, {id:"107", n:"The rainforest realm ", f:0, x:365, y:215, s:'b'}, {id:"106", n:"IG Coordinator", f:0, x:415, y:215, s:'b'}, {id:"100", n:"Reception", f:0, x:465, y:215, s:'b'}, {id:"105", n:"Admin Office", f:0, x:515, y:215, s:'b'}, {id:"104", n:"CIE 1B", f:0, x:565, y:215, s:'b'}, {id:"103", n:"College Guidance", f:0, x:615, y:215, s:'b'}, {id:"102", n:"Design Thinking", f:0, x:665, y:215, s:'b'}, {id:"101", n:"Chemistry Lab", f:0, x:840, y:215, s:'b', w:100},
     
     /* FIRST FLOOR - Washrooms Restored */
     {id:"BW1", n:"Boys Washroom F1", f:1, x:75, y:215, s:'b'}, {id:"208", n:"CS Lab", f:1, x:160, y:215, s:'b', w:100}, {id:"207", n:"Urban Utopia", f:1, x:340, y:215, s:'b'}, {id:"206", n:"The logic lounge", f:1, x:440, y:215, s:'b'}, {id:"205", n:"Library", f:1, x:560, y:215, s:'b', w:185}, {id:"204", n:"Exploring beyond infinity", f:1, x:680, y:215, s:'b'}, {id:"203", n:"The courtroom", f:1, x:740, y:215, s:'b'}, {id:"202", n:"Biology Lab", f:1, x:860, y:215, s:'b'}, {id:"201", n:"ESS Lab", f:1, x:920, y:215, s:'b'},
-    {id:"209", n:"Art Lab", f:1, x:140, y:185, s:'t', w:150}, {id:"210", n:"Terra nova", f:1, x:340, y:185, s:'t'}, {id:"211", n:"English Panaroma", f:1, x:440, y:185, s:'t'}, {id:"212", n:"Physics Lab", f:1, x:540, y:185, s:'t', w:100}, {id:"213", n:"Curtains call from the Classics: live on stage", f:1, x:640, y:185, s:'t'}, {id:"214", n:"Financial quest - Business & Economics", f:1, x:710, y:185, s:'t'}, {id:"215", n:"Staff Room F1", f:1, x:840, y:185, s:'t'}, {id:"GW1", n:"Girls Washroom F1", f:1, x:895, y:185, s:'t'},
+    {id:"209", n:"Art Lab", f:1, x:140, y:185, s:'t', w:150}, {id:"210", n:"Terra nova", f:1, x:340, y:185, s:'t'}, {id:"211", n:"English Panaroma", f:1, x:440, y:185, s:'t'}, {id:"212", n:"Physics Lab", f:1, x:540, y:185, s:'t', w:100}, {id:"213", n:"Curtains call from the Classics", f:1, x:640, y:185, s:'t'}, {id:"214", n:"Financial quest - BM/Eco", f:1, x:710, y:185, s:'t'}, {id:"215", n:"Staff Room F1", f:1, x:840, y:185, s:'t'}, {id:"GW1", n:"Girls Washroom F1", f:1, x:895, y:185, s:'t'},
     
     /* SECOND FLOOR */
-    {id:"306", n:"...", f:2, x:100, y:185, s:'t'}, {id:"307", n:"ESL Room", f:2, x:180, y:185, s:'t'}, {id:"308", n:"The Qunatum Quaters - Chemistry", f:2, x:450, y:185, s:'t'}, {id:"309", n:"DNA Diaries - Biology", f:2, x:550, y:185, s:'t'}, {id:"310", n:"The Euraka Lounge - Physics", f:2, x:650, y:185, s:'t'},
-    {id:"305", n:"Store Room", f:2, x:180, y:215, s:'b'}, {id:"304", n:"VIctory Vault", f:2, x:250, y:215, s:'b'}, {id:"303", n:"Swar Sangam", f:2, x:450, y:215, s:'b'}, {id:"302", n:"ART", f:2, x:550, y:215, s:'b'}, {id:"301", n:"MPH Hall", f:2, x:800, y:215, s:'b', w:200}
+    {id:"306", n:"Staff Room F2", f:2, x:100, y:185, s:'t'}, {id:"307", n:"ESL Room", f:2, x:180, y:185, s:'t'}, {id:"308", n:"The Qunatum Quaters - Chemistry", f:2, x:450, y:185, s:'t'}, {id:"309", n:"DNA Diaries - Biology", f:2, x:550, y:185, s:'t'}, {id:"310", n:"The Euraka Lounge - Physics", f:2, x:650, y:185, s:'t'},
+    {id:"305", n:"Store Room", f:2, x:180, y:215, s:'b'}, {id:"304", n:"VIctory Vault", f:2, x:250, y:215, s:'b'}, {id:"303", n:"Swar Sangam", f:2, x:450, y:215, s:'b'}, {id:"302", n:"ART", f:2, x:550, y:215, s:'b'}, {id:"301", n:"Theatre", f:2, x:800, y:215, s:'b', w:200}
 ]; 
 
 function speak(text) {
@@ -347,47 +347,62 @@ function startNav() {
     route = [{ x: s.x, y: sCY, f: s.f, t: `Exit ${s.n}` }]; 
     route.push({ x: s.x, y: 200, f: s.f, t: "Step into the hallway" });
 
+    const getHallwayTurn = (currentX, targetX, startSide) => {
+        if (targetX === currentX) return "Go straight";
+        if (startSide === 't') {
+            return targetX > currentX ? "Turn Left" : "Turn Right";
+        } else {
+            return targetX > currentX ? "Turn Right" : "Turn Left";
+        }
+    };
+
     if (s.f !== d.f) { 
         const leftStairX = 260;
         const rightStairX = 760;
+        let stairX = (d.f === 2 || s.f === 2) ? leftStairX : (Math.abs(d.x - leftStairX) < Math.abs(d.x - rightStairX) ? leftStairX : rightStairX);
+        let stairName = stairX === 260 ? "Left" : "Right";
         
-        let stairX;
-        let stairName;
-
-        // UPDATED LOGIC: Choose stairs based on destination proximity
-        if (d.f === 2 || s.f === 2) {
-            // MUST use Left Stairs for Second Floor
-            stairX = leftStairX;
-            stairName = "Left";
-        } else {
-            // Choose the stair closest to the DESTINATION (d.x)
-            const isLeftNearDest = Math.abs(d.x - leftStairX) < Math.abs(d.x - rightStairX);
-            stairX = isLeftNearDest ? leftStairX : rightStairX;
-            stairName = isLeftNearDest ? "Left" : "Right";
-        }
-        
-        const toStairDir = stairX > s.x ? "Turn Right" : "Turn Left";
+        const toStairDir = getHallwayTurn(s.x, stairX, s.s);
         
         route.push(
-            { x: stairX, y: 200, f: s.f, t: `${toStairDir} and go straight to the ${stairName} stairs` }, 
+            { x: stairX, y: 200, f: s.f, t: `${toStairDir} and go to the ${stairName} stairs` }, 
             { x: stairX, y: 150, f: s.f, t: `${d.f > s.f ? "Go up" : "Go down"} to Floor ${d.f}` }, 
             { x: stairX, y: 150, f: d.f, t: `You are now on Floor ${d.f}` }, 
             { x: stairX, y: 200, f: d.f, t: "Walk back into the hallway" }
         ); 
 
-        const finalDir = d.x > stairX ? "Turn Right" : "Turn Left";
+        // Turn logic when coming out of stairs (Facing the hall)
+        const finalDir = d.x > stairX ? "Turn Right" : "Turn Left"; 
         route.push({ x: d.x, y: 200, f: d.f, t: `${finalDir} and walk straight` });
     } else {
-        const directDir = d.x > s.x ? "Turn Left" : "Turn Right";
+        const directDir = getHallwayTurn(s.x, d.x, s.s);
         route.push({ x: d.x, y: 200, f: d.f, t: `${directDir} and walk straight` });
     }
 
-    route.push({ x: d.x, y: dCY, f: d.f, t: `Arrived! ${d.n} is on your ${d.s === 't' ? 'Right' : 'left'}` }); 
+    // THE FIX: Arrival side based on direction of travel
+    let finalSide = "";
+    const lastHallPos = route[route.length - 1]; // This is the hallway point (y=200)
+    const prevHallPos = route[route.length - 2]; // This is the previous point (stairs or start)
+
+    if (d.x > prevHallPos.x) {
+        // WALKING TOWARDS THE RIGHT (Staff Rooms / Theater)
+        finalSide = (d.s === 't') ? "Left" : "Right";
+    } else if (d.x < prevHallPos.x) {
+        // WALKING TOWARDS THE LEFT (Washrooms / Store Room)
+        finalSide = (d.s === 't') ? "Right" : "Left";
+    } else {
+        // Directly across the hall (no X movement)
+        // If coming from Top, target is Bottom (Right). If coming from Bottom, target is Top (Left).
+        finalSide = (s.s === 't') ? "Right" : "Left";
+    }
+
+    route.push({ x: d.x, y: dCY, f: d.f, t: `Arrived! ${d.n} is on your ${finalSide}` }); 
 
     stepIdx = 0; 
     document.getElementById("navCard").style.display = "block"; 
     update();
 }
+
 function nextStep() { if(stepIdx < route.length - 1) { stepIdx++; update(); } else { resetNav(); } } 
 function prevStep() { if(stepIdx > 0) { stepIdx--; update(); } } 
 function resetNav() { isNavigating = false; document.getElementById("navCard").style.display = "none"; update(); }
